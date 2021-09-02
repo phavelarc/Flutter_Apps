@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 void main(){
@@ -59,6 +61,16 @@ class TelaPrincipal extends StatefulWidget {
 }
 
 class _TelaPrincipalState extends State<TelaPrincipal> {
+
+  //Declaração dos atributos (variáveis) que serão utilizados
+  //para controlar os valores informados nos campos de texto
+  //Peso e Altura
+  var txtPeso = TextEditingController();
+  var txtAltura = TextEditingController();
+
+  //Declaração da chave que identifica unicamente o formulário
+  var formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,6 +82,13 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
           IconButton(
             icon: Icon(Icons.refresh),
             onPressed: (){
+              
+              setState(() {
+                formKey.currentState!.reset();
+                txtPeso.text = "";
+                txtAltura.text = "";
+                FocusScope.of(context).unfocus();
+              });
 
             },
           )
@@ -80,20 +99,20 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
 
       body: Container(
         padding: EdgeInsets.all(30),
-        child: Column(
-          children: [
-
-            Icon(
-              Icons.people, 
-              size: 120, 
-              color: Theme.of(context).primaryColor,
-            ),
-
-            campoTexto('Peso', null),
-            campoTexto('Altura', null),
-            botao('Calcular'),
-
-          ],
+        child: Form(
+          key: formKey,
+          child: Column(
+            children: [
+              Icon(
+                Icons.people, 
+                size: 120, 
+                color: Theme.of(context).primaryColor,
+              ),
+              campoTexto('Peso', txtPeso),
+              campoTexto('Altura', txtAltura),
+              botao('Calcular'),
+            ],
+          ),
         ),
       ),
       
@@ -119,6 +138,19 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
             borderRadius: BorderRadius.circular(12),
           ),
         ),
+
+        //
+        // VALIDADOR
+        //
+        validator: (value){
+          value = value!.replaceFirst(',', '.');
+          if (double.tryParse(value) == null){
+            return 'Entre com um valor numérico';
+          }else{
+            return null;
+          }
+        },
+
       ),
 
     );
@@ -136,7 +168,25 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
         child: Text(rotulo),
         onPressed: (){
           //evento que ocorre ao pressionar o botão
-          print('botão pressionado');
+          //print('botão pressionado');
+
+
+          //executar o Validador
+          if (formKey.currentState!.validate()){
+
+          //O método setState permite a manipulação do estado da UI do App
+          setState(() {
+            //leitura dos valores dos campos de texto
+            double peso = double.parse(txtPeso.text.replaceFirst(',', '.'));
+            double altura = double.parse(txtAltura.text.replaceFirst(',', '.'));
+            double imc = peso / pow(altura, 2);
+
+            //exibir o resultado
+            caixaDialog('IMC: ${imc.toStringAsFixed(2)}');
+          });
+
+          }
+
         },
         /*onLongPress: (){
           print('botão pressionado + longo');
@@ -146,5 +196,27 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
     );
   }
 
+  //
+  // CAIXA DE DIÁLOGO
+  //
+  caixaDialog(msg){
+    return showDialog(
+      context: context, 
+      builder: (BuildContext context){
+        return AlertDialog(
+          title: Text('Resultado'),
+          content: Text(msg),
+          actions: [
+            TextButton(
+              child: Text('Fechar'),
+              onPressed: (){
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      }  
+    );
+  }
 
 }
