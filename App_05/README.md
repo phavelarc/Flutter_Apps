@@ -1,6 +1,6 @@
 # IMC Calculator
 
-Calculadora de IMC feita com Flutter
+Calculadora de IMC feita com Flutter.
 
 ## Getting Started
 
