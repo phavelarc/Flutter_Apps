@@ -1,6 +1,6 @@
-# app05
+# IMC Calculator
 
-A new Flutter project.
+Calculadora de IMC feita com Flutter
 
 ## Getting Started
 
