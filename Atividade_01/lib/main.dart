@@ -19,10 +19,13 @@ class TelaPrincipal extends StatelessWidget {
       appBar: AppBar(
         title: Text('Texto'),
         actions: <Widget>[
-          Icon(
-            Icons.home,
-            color: Colors.black,
-            size: 40.0,
+          Padding(
+            padding: const EdgeInsets.only(right: 15.0),
+            child: Icon(
+              Icons.home,
+              color: Colors.black,
+              size: 40.0,
+            ),
           ),
         ],
       ),
@@ -32,7 +35,8 @@ class TelaPrincipal extends StatelessWidget {
           Row(
             children: [
               Container(
-                width: 200.0,
+                margin: new EdgeInsets.only(left: 10.0, top: 10.0),
+                width: (MediaQuery.of(context).size.width - 20.0) / 2,
                 height: 100.0,
                 color: Colors.yellow,
                 child: Center(
@@ -43,7 +47,8 @@ class TelaPrincipal extends StatelessWidget {
                 ),
               ),
               Container(
-                width: 200.0,
+                margin: new EdgeInsets.only(right: 10.0, top: 10.0),
+                width: (MediaQuery.of(context).size.width - 20.0) / 2,
                 height: 100.0,
                 color: Colors.red,
                 child: Center(
@@ -56,9 +61,11 @@ class TelaPrincipal extends StatelessWidget {
             ],
           ),
         Container(
-          width: 400.0,
-          height: 440.0,
+          width: MediaQuery.of(context).size.width - 20.0,
+          //-200(Dois Container), -20(10 margem: top e bot), -56(appBar)
+          height: MediaQuery.of(context).size.height -276,
           color: Colors.green,
+          margin: new EdgeInsets.symmetric(horizontal: 10.0),
           child: Center(
             child: Text(
               'C',
@@ -69,7 +76,8 @@ class TelaPrincipal extends StatelessWidget {
         Row(
           children: [
             Container(
-              width: 200.0,
+              margin: new EdgeInsets.only(left: 10.0, bottom: 10.0),
+              width: (MediaQuery.of(context).size.width - 20.0) / 2,
               height: 100.0,
               color: Colors.orange,
               child: Center(
@@ -80,7 +88,8 @@ class TelaPrincipal extends StatelessWidget {
               ),
             ),
             Container(
-              width: 200.0,
+              margin: new EdgeInsets.only(right: 10.0, bottom: 10.0),
+              width: (MediaQuery.of(context).size.width - 20.0) / 2,
               height: 100.0,
               color: Colors.purple,
               child: Center(
