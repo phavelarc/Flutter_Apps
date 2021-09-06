@@ -20,7 +20,7 @@ class TelaPrincipal extends StatelessWidget {
         title: Text('Texto'),
         actions: <Widget>[
           Padding(
-            padding: const EdgeInsets.only(right: 15.0),
+            padding: const EdgeInsets.only(right: 12.0),
             child: Icon(
               Icons.home,
               color: Colors.black,
