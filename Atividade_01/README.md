@@ -2,4 +2,4 @@
 
 Atividade prática para aprender StatelessWidget.
 
-<img src="/lib/img01.PNG" alt="Resultado"/>
+<img src='/lib/img01.PNG' alt="Resultado"/>
