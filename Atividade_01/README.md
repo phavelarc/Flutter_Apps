@@ -2,5 +2,5 @@
 
 Atividade prática para aprender StatelessWidget.
 
-# Resultado
+# Resultadoa
 ![](lib/img01.PNG?)
