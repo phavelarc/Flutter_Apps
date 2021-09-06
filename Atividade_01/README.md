@@ -2,4 +2,4 @@
 
 Atividade prática para aprender StatelessWidget.
 
-![Resultado](Atividade_01/lib/img01.PNG?raw=true "Resultado")
+![Resultado](Atividade_01/lib/img01.png?)
