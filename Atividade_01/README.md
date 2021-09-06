@@ -1,6 +1,6 @@
-# atividade01
+# Atividade01
 
-A new Flutter project.
+Atividade prática para aprender StatelessWidget.
 
 ## Getting Started
 
