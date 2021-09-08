@@ -20,8 +20,8 @@ class WidgetCarro extends StatelessWidget {
       //MARGENS (externa)
       //margin: EdgeInsets.all(30),
       //margin: EdgeInsets.only(top: 30),
-      //margin: EdgeInsets.only(left: 30),
-      margin: EdgeInsets.fromLTRB(20, 20, 20, 0),
+      //margin: EdgeInsets.only(left: 10),
+      //margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
 
       //ESPAÇAMENTO (interna)
       padding: EdgeInsets.all(30),
@@ -30,11 +30,7 @@ class WidgetCarro extends StatelessWidget {
       decoration: BoxDecoration(
         border: Border.all(
           color: Colors.black,
-          width: 1,
-        ),
-
-        borderRadius: BorderRadius.all(
-          Radius.circular(10),
+          width: 1.5,
         ),
 
         gradient: LinearGradient(
@@ -43,27 +39,30 @@ class WidgetCarro extends StatelessWidget {
           end: Alignment.bottomCenter,
           ),
 
-        //color: Colors.blue[100],
-
       ),
 
-      width: MediaQuery.of(context).size.width*0.90,
-      //height: 300,
+      width: MediaQuery.of(context).size.width * 0.48,
 
-
+      //Informações do Carro
       child: Column(
         children: [
-          Text(this.marca, style: 
-            TextStyle(
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          Text(this.modelo, style: 
-            TextStyle(
-              fontSize: 32,
-              fontStyle: FontStyle.italic,
-            ),
+          //Informações do carro na mesma linha
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(this.marca, style: 
+                TextStyle(
+                  fontSize: 18.2,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(this.modelo, style:
+                TextStyle(
+                  fontSize: 18.2,
+                  fontStyle: FontStyle.italic,
+                ),
+              ),
+            ],
           ),
 
           //Incluir a foto do Carro
