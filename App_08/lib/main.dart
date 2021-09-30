@@ -25,6 +25,9 @@ class _PrincipalPageState extends State<PrincipalPage> {
   //Lista dinâmica para armazenamento das tarefas
   var lista = [];
 
+  //Retornar a tarefa adicionada pelo usuário
+  var txtTarefa = TextEditingController();
+
   @override
   void initState(){
     lista.add("Ir ao supermercado");
@@ -94,6 +97,65 @@ class _PrincipalPageState extends State<PrincipalPage> {
             );
           },
         ),
+      ),
+
+      //
+      // Adicionar novas tarefas
+      //
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () async {
+          await showDialog(
+            context: context,
+            builder: (context){
+
+              return AlertDialog(
+                title: Text('Adicionar tarefa'),
+                content:  TextField(
+                  controller: txtTarefa,
+                  style: TextStyle(fontSize: 22),
+                  decoration: InputDecoration(
+                    hintText: 'Informe a tarefa',
+                  ),
+                ),
+                actions: [
+                  TextButton(
+                    child: Text('OK'),
+                    onPressed: (){
+
+                      setState(() {
+                        
+                        var msg = '';
+                        if(txtTarefa.text.isNotEmpty){
+                          lista.add(txtTarefa.text);
+                          txtTarefa.clear();
+                          msg = 'Tarefa adicionada com sucesso.';
+                        }else{
+                          msg = 'Erro: A descrição da tarefa não foi informada.';
+                        }
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(msg),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
+                        Navigator.pop(context);
+                      });
+
+                    },
+                  ),
+                  TextButton(
+                    child: Text('Cancelar'),
+                    onPressed: (){
+                      Navigator.pop(context);
+                    },
+                  ),
+                ],
+              );
+            }
+          );
+        },
       ),
     );
   }
